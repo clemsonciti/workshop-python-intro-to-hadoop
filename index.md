@@ -69,3 +69,12 @@ title: High Performance Computing
     a.  Types of parallelism and MPI concepts
 
     b.  **Activity:** Submit a script that depends on MPI
+
+## Topics
+
+1. [Introduction to HPC and accessing the cluster](01-intro.html)
+2. [Transferring files to and from the cluster](02-transfer.html)
+3. [Scheduling an interactive job](03-interactive.html)
+4. [Accessing and installing tools on the cluster](04-tools.html)
+5. [Submitting batch jobs](05-script.html)
+6. [Parallelism, MPI and multithreading](06-parallelism.html)
