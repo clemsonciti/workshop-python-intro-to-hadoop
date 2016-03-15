@@ -3,6 +3,18 @@ layout: page
 title: Introduction to HPC on the Palmetto Cluster
 ---
 
+> ## Learning objectives {.objectives}
+>
+> By the end of this workshop, you will be able to
+> 
+> 1.  Accomplish essential tasks such as logging in to the cluster
+>     and transfering files to and from the cluster.  
+> 2.  Understand how to use software tools available on the cluster
+>     and install you own tools.
+> 3.  Run interactive jobs and schedule batch jobs on the cluster.
+> 4.  Consult the [User Guide]() and other resources to
+>     successfully use the cluster for your own work.      
+
 > ## Prerequesites {.prereq}
 > 
 > Learners need to be familiar with the unix filesystem,

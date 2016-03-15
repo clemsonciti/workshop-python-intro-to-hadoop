@@ -10,4 +10,6 @@ minutes: 20
 >   and a batch job
 > * Understand the different components of a submission script
 > * Submit a batch job using a submmission script
-> * Learn how to monitor the progress of running jobs
+> * Learn about queues and priority
+> * Learn how to monitor the progress of running jobs/
+>   kill running jobs

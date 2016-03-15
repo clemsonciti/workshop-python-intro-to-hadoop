@@ -13,13 +13,6 @@ minutes: 45
 > * Access the cluster with ssh
 > * Understand the cluster filesystem set-up
 
-## Basic terminology
-
-Node:
-Core:
-Thread
-
-
 ## Accessing the cluster via SSH
 
 The Palmetto cluster runs the Linux operating system,
@@ -71,7 +64,11 @@ you are connected to -
 `user001` is the "login" node.
 The prompt also tells you your current directory,
 i.e., `~`, which is short for your home directory `/home/username`.
-We will hereby refer to the prompt as just `$`.
+We will hereby refer to the prompt as just `$`, i.e.,
+
+~~~{.bash}
+$ 
+~~~
 
 ## Structure of the Palmetto Cluster
 
