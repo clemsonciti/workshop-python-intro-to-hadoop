@@ -36,10 +36,22 @@
 <ul>
 <li>Schedule an interactive job on the Palmetto</li>
 <li>Learn about the difference resources and limits</li>
-<li>Learn about queues and priority</li>
 </ul>
 </div>
 </section>
+<p>The Palmetto cluster consists of several hundred “compute” nodes, each equipped with CPUs and GPUs to do heavy computation. The login node <code>user001</code> is a “service” node, shared by all users, and is meant only for tasks such as managing projects (editing and moving files and directories), and submitting batch scripts (about which we will learn shortly).</p>
+<p>One way to use the palmetto is to login to a compute node. You do this with the <code>qsub -I</code> command:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qsub</span> -I</code></pre>
+<pre class="output"><code>qsub (Warning): Interactive jobs will be treated as not rerunnable
+qsub: waiting for job 2725837.pbs02 to start
+qsub: job 2725837.pbs02 ready</code></pre>
+<p>Note that the number <code>2725837</code> may be different for you. Once you are logged in to a compute node, your prompt will look slightly different:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">[<span class="kw">username@node1466</span> ~]$ </code></pre>
+<p>The prompt indicates that you are no longer running a shell on the login node (<code>user001</code>), but a compute node (<code>node1466</code> or similar). When logged in to a compute node, you can still edit and move files in your home and other directories. But any programs that you run will run on the hardware available on that node.</p>
+<p>By default, you are awarded 1 core on 1 compute node with 1 GB of RAM for 30 minutes. You can request more (or less) of each of these resources by modifying the <code>qsub</code> command. For instance, to use 2 CPU cores for 10 minutes:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qsub</span> -I -l select=1:ncpus=2,walltime=00:10:00</code></pre>
+<p>Here, we use <code>select=1</code> to specify the number of “chunks” of hardware that we’d like. The following command requests 4 “chunks” of hardware, with 2 CPU cores, 4 GB of RAM <em>each</em> - for 2 minutes:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qsub</span> -I -l select=4:ncpus=2:mem=4gb,walltime=00:02:00</code></pre>
         </div>
       </div>
       </article>
