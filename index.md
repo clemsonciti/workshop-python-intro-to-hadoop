@@ -12,8 +12,8 @@ title: Introduction to HPC on the Palmetto Cluster
 > 2.  Understand how to use software tools available on the cluster
 >     and install you own tools.
 > 3.  Run interactive jobs and schedule batch jobs on the cluster.
-> 4.  Consult the [User Guide]() and other resources to
->     successfully use the cluster for your own work.      
+> 4.  Consult the [User Guide](http://citi.clemson.edu/palmetto/pages/userguide.html)
+>     and other resources to successfully use the cluster for your own work.
 
 > ## Prerequesites {.prereq}
 > 
