@@ -1,6 +1,6 @@
 ---
 layout: page
-title: The Unix Shell
+title: Introduction to Linux
 subtitle: Loops
 minutes: 15
 ---
