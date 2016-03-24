@@ -49,5 +49,5 @@ to get started.
 5. [Submitting batch jobs](05-script.html)
 6. [Parallelism, MPI and multithreading](06-parallelism.html)
 
-[swc-lessons]: http://software-carpentry.org/lessons/
-[contributing]: CONTRIBUTING.md
+[swc-lessons]: https://software-carpentry.org/lessons/
+[contributing]: https://github.com/shwina/hpc-novice/blob/gh-pages/CONTRIBUTING.md 
