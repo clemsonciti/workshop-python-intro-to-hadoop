@@ -34,6 +34,7 @@ Like Software Carpentry, we welcome contributions
 of all kinds:
 new lessons,
 fixes/improvements to existing material,
+corrections to typos,
 bug reports,
 and reviews of proposed changes are all equally welcome.
 

@@ -35,8 +35,9 @@ than the graphical interface.
 
 To be able to run commands on the Palmetto from your own machine,
 you will first need to be able to log in to the Palmetto.
+This is known as a *remote login*.
 If you run Mac OS X or Linux on your machine,
-you can do this by opening a terminal
+you can log in remotely by opening a terminal
 and using the `ssh` command:
 
 ~~~{.bash}
@@ -90,8 +91,17 @@ the login node `user001`.
 The login node runs a "server" program
 that listens for remote logins.
 On our own machines, we run a "client" program
-(`ssh`) that can talk to this server.
+(Secure Shell or `ssh`) that can talk to this server.
 Our client program passes our login credentials to this server,
 and if we are allowed to log in,
-the server runs a shell for us on whatever remote
-computer it is running on (`user0001`).
+the server runs a shell for us on the computer
+it is running on (`user0001`).
+Any commands that we enter into this shell
+are executed not by our own machines,
+but by `user0001`.
+
+Another important service node on the Palmetto cluster
+is the *scheduler* node.
+The scheduler decides which
+users can run their computations on the cluster and when---but
+more on that later.
