@@ -23,7 +23,22 @@ title: Introduction to HPC on the Palmetto Cluster
 > to create and navigate directories
 > (`pwd`, `cd`, `ls`, `mkdir`).
 > Some experience with a terminal-based text editor
-> (such as `nano`) is also desired.
+> (such as `nano`) is also recommended.
+
+## Contributing
+
+These lessons are based on the
+[Software Carpentry][swc-lessons] lesson materials,
+an open source project.
+Like Software Carpentry, we welcome contributions
+of all kinds:
+new lessons,
+fixes/improvements to existing material,
+bug reports,
+and reviews of proposed changes are all equally welcome.
+
+Please see our page on [Contributing][contributing]
+to get started.
 
 ## Topics
 
@@ -33,3 +48,6 @@ title: Introduction to HPC on the Palmetto Cluster
 4. [Accessing and installing tools on the cluster](04-tools.html)
 5. [Submitting batch jobs](05-script.html)
 6. [Parallelism, MPI and multithreading](06-parallelism.html)
+
+[swc-lessons]: http://software-carpentry.org/lessons/
+[contributing]: CONTRIBUTING.md
