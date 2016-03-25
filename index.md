@@ -43,22 +43,22 @@ to get started.
 
 ## Introduction to Linux
 
-1. [Introduction to the Unix shell](00-intro.md)
-2. [Accessing the Palmetto cluster](01-accessing-palmetto.md)
-3. [Files and directories](02-filedir.md)
-4. [Creating things](03-create.md)
-5. [Pipes and filters](04-pipefilter.md)
-6. [Performing repetitive tasks](05-loops.md)
-7. [Shell scripts](06-shell-scripts.md)
+1. [Introduction to the Unix shell](00-intro.html)
+2. [Accessing the Palmetto cluster](01-accessing-palmetto.html)
+3. [Files and directories](02-filedir.html)
+4. [Creating things](03-create.html)
+5. [Pipes and filters](04-pipefilter.html)
+6. [Performing repetitive tasks](05-loops.html)
+7. [Shell scripts](06-shell-scripts.html)
 
 ## Introduction to research computing and the Palmetto cluster
 
-1. [Transfering files to and from the cluster](07-transfer-files.md)
-2. [Running interactive jobs](08-interactive-jobs.md)
-3. [Building, configuring and running software](09-software.md)
-4. [Running batch jobs](10-batch-jobs.md)
-5. [Parallelism](11-parallelism.md)
-6. [Storage](12-storage.md)
+1. [Transfering files to and from the cluster](07-transfer-files.html)
+2. [Running interactive jobs](08-interactive-jobs.html)
+3. [Building, configuring and running software](09-software.html)
+4. [Running batch jobs](10-batch-jobs.html)
+5. [Parallelism](11-parallelism.html)
+6. [Storage](12-storage.html)
 
 [swc-lessons]: https://software-carpentry.org/lessons/
 [contributing]: https://github.com/shwina/hpc-novice/blob/gh-pages/CONTRIBUTING.md 
