@@ -1,42 +1,27 @@
 ---
 layout: lesson
-title: Introduction to HPC on the Palmetto Cluster
-subtitle: Introduction to Palmetto and accessing the cluster
+title: Introduction to Linux
+subtitle: Logging in to the Palmetto Cluster
 minutes: 45
 ---
 
 > ## Learning objectives {.objectives}
-> * Learn the basic cluster terminology,
-    differentiate between nodes, cores, threads
-> * Understand the structure of the cluster
-    (login nodes, job scheduler, etc.)
-> * Access the cluster with ssh
-> * Understand the cluster filesystem set-up
+> * Learn how to log in to the Palmetto cluster.
+> * Learn the basic structure of the Palmetto cluster.
 
-## Accessing the cluster via SSH
-
-The Palmetto cluster runs the Linux operating system,
+In this workshop,
+we will use a command-line interface to interact with
+the Palmetto cluster, which runs the Linux operating system
 specifically, [Scientific Linux](https://www.scientificlinux.org/).
-Unlike familiar operating systems such as
-Microsoft Windows or Apple OS X, however,
-you will primarily interact with the cluster via
-a *command-line interface*
-(as opposed to a *graphical* interface).
-
-Interacting with the system through a simple command-line interface
-is required because there is no room for the
-computational "overhead" of running a graphical interface,
-especially not on a large HPC cluster with
-hundreds of users connecting to the system through
-remote network connections.
-Besides, the command line interface is much better suited
-to automating tasks and performing repetitive actions
-than the graphical interface.
+However, note that these commands can be used on
+any *Unix-based* operating system,
+including Mac OS X.
 
 To be able to run commands on the Palmetto from your own machine,
 you will first need to be able to log in to the Palmetto.
 This is known as a *remote login*.
-If you run Mac OS X or Linux on your machine,
+If you run Mac OS X or any other Unix-based operating
+system on your machine,
 you can log in remotely by opening a terminal
 and using the `ssh` command:
 
@@ -56,24 +41,29 @@ and use the following parameters (whichever required):
 
 When logged in,
 you are presented with a welcome message
-and the following prompt:
+and the following "prompt":
 
 ~~~{.bash}
 [username@user001 ~]$ 
 ~~~
 
-The prompt tells you your username and which node
+The prompt in a bash shell usually
+consists of a dollar (`$`) sign,
+and shows that the shell is waiting for input.
+The prompt may also contain other information:
+this prompt tells you your username and which node
 you are connected to -
 `user001` is the "login" node.
-The prompt also tells you your current directory,
-i.e., `~`, which is short for your home directory `/home/username`.
-We will hereby refer to the prompt as just `$`, i.e.,
+It also tells you your current directory,
+i.e., `~`, which, as you will learn shortly,
+is short for your *home* directory.
+We will mostly refer to the prompt as just `$`, i.e.,
 
 ~~~{.bash}
 $ 
 ~~~
 
-## Structure of the Palmetto Cluster
+## Basic structure of the cluster
 
 <img src="fig/palmetto-structure.png" \
      alt="Structure of the Palmetto Cluster" \

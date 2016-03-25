@@ -6,43 +6,31 @@ minutes: 15
 ---
 > ## Learning Objectives {.objectives}
 >
-> *   Explain the similarities and differences between a file and a directory.
+> *   Explain the similarities and differences between a
+>     file and a directory.
 > *   Translate an absolute path into a relative path and vice versa.
-> *   Construct absolute and relative paths that identify specific files and directories.
+> *   Construct absolute and relative paths that
+>     identify specific files and directories.
 > *   Explain the steps in the shell's read-run-print cycle.
-> *   Identify the actual command, flags, and filenames in a command-line call.
+> *   Identify the actual command, flags,
+>     and filenames in a command-line call.
 > *   Demonstrate the use of tab completion, and explain its advantages.
 
-The part of the operating system responsible for managing files and directories
+The part of the operating system responsible for
+managing files and directories
 is called the **file system**.
 It organizes our data into files,
 which hold information,
 and directories (also called "folders"),
 which hold files or other directories.
 
-Several commands are frequently used to create, inspect, rename, and delete files and directories.
-To start exploring them,
-let's open a shell window:
-
-> ## Preparation Magic {.callout}
->
-> If you type the command:
-> `PS1='$ '`
-> into your shell, your window should look like our example in this lesson.  
-> This isn't necessary to follow along (in fact, your prompt may have 
-> other helpful information you want to know about).  This is up to you!  
-
-~~~ {.bash}
-$
-~~~
-
-The dollar sign is a **prompt**, which shows us that the shell is waiting for input;
-your shell may use a different character as a prompt and may add information before 
-the prompt. When typing commands, either from these lessons or from other sources, 
-do not type the prompt, only the commands that follow it.
+Several commands are frequently used to create,
+inspect, rename, and delete files and directories.
+In this lesson, we will begin to explore them. 
 
 Type the command `whoami`,
-then press the Enter key (sometimes marked Return) to send the command to the shell.
+then press the Enter key (sometimes marked Return) to
+send the command to the shell.
 The command's output is the ID of the current user,
 i.e.,
 it shows us who the shell thinks we are:
@@ -61,15 +49,16 @@ More specifically, when we type `whoami` the shell:
 3.  displays that program's output, then
 4.  displays a new prompt to tell us that it's ready for more commands.
 
-
 > ## Username Variation {.callout}
 >
 > In this lesson, we have used the username `nelle` (associated 
-> with our hypothetical scientist Nelle) in example input and output throughout.  
+> with our hypothetical scientist Nelle)
+> in example input and output throughout.  
 > However, when 
 > you type this lesson's commands on your computer,
 > you should see and use something different, 
-> namely, the username associated with the user account on your computer.  This 
+> namely,
+> the username associated with the user account on your computer. This 
 > username will be the output from `whoami`.  In 
 > what follows, `nelle` should always be replaced by that username.  
 
