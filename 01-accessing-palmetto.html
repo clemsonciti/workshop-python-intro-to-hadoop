@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title>Software Carpentry: Introduction to HPC on the Palmetto Cluster</title>
+    <title>Software Carpentry: </title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -26,25 +26,20 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-                    <a href="index.html"><h1 class="title">Introduction to HPC on the Palmetto Cluster</h1></a>
-          <h2 class="subtitle">Introduction to Palmetto and accessing the cluster</h2>
+                    <h1 class="title"></h1>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
 <h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
-<li>Learn the basic cluster terminology, differentiate between nodes, cores, threads</li>
-<li>Understand the structure of the cluster (login nodes, job scheduler, etc.)</li>
-<li>Access the cluster with ssh</li>
-<li>Understand the cluster filesystem set-up</li>
+<li>Learn how to log in to the Palmetto cluster.</li>
+<li>Learn the basic structure of the Palmetto cluster.</li>
 </ul>
 </div>
 </section>
-<h2 id="accessing-the-cluster-via-ssh">Accessing the cluster via SSH</h2>
-<p>The Palmetto cluster runs the Linux operating system, specifically, <a href="https://www.scientificlinux.org/">Scientific Linux</a>. Unlike familiar operating systems such as Microsoft Windows or Apple OS X, however, you will primarily interact with the cluster via a <em>command-line interface</em> (as opposed to a <em>graphical</em> interface).</p>
-<p>Interacting with the system through a simple command-line interface is required because there is no room for the computational “overhead” of running a graphical interface, especially not on a large HPC cluster with hundreds of users connecting to the system through remote network connections. Besides, the command line interface is much better suited to automating tasks and performing repetitive actions than the graphical interface.</p>
-<p>To be able to run commands on the Palmetto from your own machine, you will first need to be able to log in to the Palmetto. This is known as a <em>remote login</em>. If you run Mac OS X or Linux on your machine, you can log in remotely by opening a terminal and using the <code>ssh</code> command:</p>
+<p>In this workshop, we will use a command-line interface to interact with the Palmetto cluster, which runs the Linux operating system specifically, <a href="https://www.scientificlinux.org/">Scientific Linux</a>. However, note that these commands can be used on any <em>Unix-based</em> operating system, including Mac OS X.</p>
+<p>To be able to run commands on the Palmetto from your own machine, you will first need to be able to log in to the Palmetto. This is known as a <em>remote login</em>. If you run Mac OS X or any other Unix-based operating system on your machine, you can log in remotely by opening a terminal and using the <code>ssh</code> command:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ssh</span> username@user.palmetto.clemson.edu</code></pre></div>
 <p>If you run Windows, you will use the SSH Secure Shell to log in. Click on <code>File &gt; Quick Connect</code>, and use the following parameters (whichever required):</p>
 <ul>
@@ -56,11 +51,11 @@
 </li>
 <li>Authentication method: none specified</li>
 </ul>
-<p>When logged in, you are presented with a welcome message and the following prompt:</p>
+<p>When logged in, you are presented with a welcome message and the following “prompt”:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">[<span class="kw">username@user001</span> ~]$ </code></pre></div>
-<p>The prompt tells you your username and which node you are connected to - <code>user001</code> is the “login” node. The prompt also tells you your current directory, i.e., <code>~</code>, which is short for your home directory <code>/home/username</code>. We will hereby refer to the prompt as just <code>$</code>, i.e.,</p>
+<p>The prompt in a bash shell usually consists of a dollar (<code>$</code>) sign, and shows that the shell is waiting for input. The prompt may also contain other information: this prompt tells you your username and which node you are connected to - <code>user001</code> is the “login” node. It also tells you your current directory, i.e., <code>~</code>, which, as you will learn shortly, is short for your <em>home</em> directory. We will mostly refer to the prompt as just <code>$</code>, i.e.,</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ </code></pre></div>
-<h2 id="structure-of-the-palmetto-cluster">Structure of the Palmetto Cluster</h2>
+<h2 id="basic-structure-of-the-cluster">Basic structure of the cluster</h2>
 <p><img src="fig/palmetto-structure.png" \
      alt="Structure of the Palmetto Cluster" \
      style="height:350px"></p>
