@@ -526,37 +526,24 @@ and we will see it in many other tools as we go on.
 >8.  `cd`
 >9.  `cd ..`
 
-> ## Relative path resolution {.challenge}
->
-> Using the filesystem diagram below, if `pwd` displays `/home/thing`, 
-what will `ls ../backup` display?
->
-> 1.  `../backup: No such file or directory`
-> 2.  `2012-12-01 2013-01-08 2013-01-27`
-> 3.  `2012-12-01/ 2013-01-08/ 2013-01-27/`
-> 4.  `original pnas_final pnas_sub`
+> ## Listing files by size
 > 
-> ![File System for Challenge Questions](fig/filesystem-challenge.svg)
-
-
-> ## `ls` reading comprehension {.challenge}
+> Navigate to the directory `data-shell/data/pdb`.
+> Typing in `ls`,
+> you should see several files with the extension `.pdb`.
+> These are *protein data bank* files,
+> that express the three-dimensional structure
+> of large organic molecules.
 >
-> Assuming a directory structure as in the above Figure 
-> (File System for Challenge Questions), if `pwd` displays `/home/backup`,
-> and `-r` tells `ls` to display things in reverse order,
-> what command will display:
+> Note that the molecules are arranged
+> in alphabetical order.
+> We'd like instead to list them by *size*
+> (number of bytes or characters).
+> We know that there's a switch that we can
+> provide to the `ls` command to do this,
+> but we're not sure which one.
+> Type in `man ls` to get information about `ls`
+> and the various command switches available.
 >
-> ~~~
-> pnas_sub/ pnas_final/ original/
-> ~~~
->
-> 1.  `ls pwd`
-> 2.  `ls -r -F`
-> 3.  `ls -r -F /home/backup`
-> 4.  Either \#2 or \#3 above, but not \#1.
-
-
-> ## Exploring more `ls` arguments {.challenge}
->
-> What does the command `ls` do when used with the `-s` and `-h`
-> arguments?
+> Find the appropriate switch to list the contents
+> of this directory by size.
