@@ -312,6 +312,50 @@ but it does find the copy in `thesis` that we didn't delete.
 > cause the operating system to try to open it with a music player
 > when someone double-clicks it.
 
+> ## Creating a directory tree {.challenge}
+> 
+> Nelle is finally beginning to write her thesis
+> and wants to create the following (empty)
+> files and directories as a starting point:
+>
+> ![Nelle's thesis directory](fig/directory-tree-challenge-2.svg)
+>
+> * The text for her thesis will go in the file `thesis.md`.
+> * The readings from her experiments will go in
+> the `experiments` directory,
+> under subdirectories `2015-03-21` and `2015-04-16`,
+> corresponding to the two days she collected data on.
+> She will also write a script `analyze.py` to analyze
+> those readings.
+> * There are also some `.pdb` files that are part of her analysis,
+> and they need to be in the `data` directory.
+>
+> Create the directory `thesis` and all its contents
+> in your home directory.
+> Remember, `.pdb` files and `.py` files
+> are just text files.
+
+
+> ## Copying and moving things {.challenge}
+>
+> After a bit of writing, Nelle has discovered that
+> there's a better way for her to organize her thesis.
+> Now,
+> she also needs a `results` directory to store results.
+> The `results` directory is just a copy of the `experiments`
+> directory for now.
+> She also wants to put her script `analyze.py` in a directory
+> of its own,
+> because she will write more scipts to do other analyses,
+> and she'd like to keep them all in one place.
+>
+> ![Nelle's thesis directory](fig/directory-tree-challenge-1.svg).
+>
+> Starting from the files and directories you made
+> in the previous challenge,
+> reorganize the `thesis` directory to match
+> the diagram above.
+
 > ## Renaming files {.challenge}
 >
 > Suppose that you created a `.txt` file in your current directory to contain a list of the
