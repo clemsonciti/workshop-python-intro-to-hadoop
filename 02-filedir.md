@@ -526,7 +526,7 @@ and we will see it in many other tools as we go on.
 >8.  `cd`
 >9.  `cd ..`
 
-> ## Listing files by size
+> ## Listing files by size {.challenge}
 > 
 > Navigate to the directory `data-shell/data/pdb`.
 > Typing in `ls`,
