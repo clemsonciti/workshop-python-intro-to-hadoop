@@ -20,7 +20,7 @@ and use `ls -F` to see what it contains:
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/Desktop/data-shell
+/home/nelle/data-shell
 ~~~
 ~~~ {.bash}
 $ ls -F
@@ -135,13 +135,13 @@ $ ls
 > file's disk space right away.
 
 Let's re-create that file
-and then move up one directory to `/Users/nelle` using `cd ..`:
+and then move up one directory to `/home/nelle` using `cd ..`:
 
 ~~~ {.bash}
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/thesis
+/home/nelle/data-shell/thesis
 ~~~
 ~~~ {.bash}
 $ nano draft.txt
@@ -164,47 +164,19 @@ $ rm thesis
 rm: cannot remove `thesis': Is a directory
 ~~~
 
-This happens because `rm` only works on files, not directories.
-The right command is `rmdir`,
-which is short for "remove directory".
-It doesn't work yet either, though,
-because the directory we're trying to remove isn't empty:
+`rm` without any additional switches can only
+delete files, not directories.
+To remove the directory `thesis`,
+we use the `-r` switch (which stands for *recursive*).
 
-~~~ {.bash}
-$ rmdir thesis
 ~~~
-~~~ {.error}
-rmdir: failed to remove `thesis': Directory not empty
+$ rm -r thesis
 ~~~
 
-This little safety feature can save you a lot of grief,
-particularly if you are a bad typist.
-To really get rid of `thesis` we must first delete the file `draft.txt`:
-
-~~~ {.bash}
-$ rm thesis/draft.txt
-~~~
-
-The directory is now empty, so `rmdir` can delete it:
-
-~~~ {.bash}
-$ rmdir thesis
-~~~
-
-> ## With Great Power Comes Great Responsibility {.callout}
->
-> Removing the files in a directory just so that we can remove the
-> directory quickly becomes tedious. Instead, we can use `rm` with the
-> `-r` flag (which stands for "recursive"):
->
-> ~~~
-> $ rm -r thesis
-> ~~~
->
-> This removes everything in the directory, then the directory itself. If
-> the directory contains sub-directories, `rm -r` does the same thing to
-> them, and so on. It's very handy, but can do a lot of damage if used
-> without care.
+This removes everything in the directory, then the directory itself. If
+the directory contains sub-directories, `rm -r` does the same thing to
+them, and so on. It's very handy, but can do a lot of damage if used
+without care.
 
 Let's create that directory and file one more time.
 (Note that this time we're running `nano` with the path `thesis/draft.txt`,
@@ -214,7 +186,7 @@ rather than going into the `thesis` directory and running `nano` on `draft.txt` 
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle
+/home/nelle
 ~~~
 ~~~ {.bash}
 $ mkdir thesis
@@ -359,7 +331,7 @@ but it does find the copy in `thesis` that we didn't delete.
 >
 > ~~~
 > $ pwd
-> /Users/jamie/data
+> /home/jamie/data
 > $ ls
 > proteins.dat
 > $ mkdir recombine
