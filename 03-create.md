@@ -13,7 +13,7 @@ minutes: 15
 
 We now know how to explore files and directories,
 but how do we create them in the first place?
-Let's go back to our `data-shell` directory on the Desktop
+Let's go back to our `data-shell` directory
 and use `ls -F` to see what it contains:
 
 ~~~ {.bash}
@@ -77,19 +77,10 @@ $ nano draft.txt
 > powerful for real work. On Unix systems (such as Linux and Mac OS X),
 > many programmers use [Emacs](http://www.gnu.org/software/emacs/) or
 > [Vim](http://www.vim.org/) (both of which are completely unintuitive,
-> even by Unix standards), or a graphical editor such as
-> [Gedit](http://projects.gnome.org/gedit/). On Windows, you may wish to
-> use [Notepad++](http://notepad-plus-plus.org/).  Windows also has a built-in 
-> editor called `notepad` that can be run from the command line in the same 
-> way as `nano` for the purposes of this lesson.  
->
-> No matter what editor you use, you will need to know where it searches
-> for and saves files. If you start it from the shell, it will (probably)
-> use your current working directory as its default location. If you use
-> your computer's start menu, it may want to save files in your desktop or
-> documents directory instead. You can change this by navigating to
-> another directory the first time you "Save As..."
-
+> even by Unix standards). But once you've accumulated enough experience
+> with one of these terminal-based editors,
+> you might find yourself preferring them
+> over other graphical text editors.
 
 Let's type in a few lines of text,
 then use Control-O to write our data to disk:
