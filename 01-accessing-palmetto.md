@@ -1,7 +1,7 @@
 ---
 layout: lesson
 title: Introduction to Linux
-subtitle: First steps: logging in to the Palmetto Cluster
+subtitle: First steps
 minutes: 45
 ---
 
