@@ -228,47 +228,12 @@ $ <span class="kw">cd</span> data</code></pre></div>
 </ol>
 </div>
 </section>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
-<h2 id="relative-path-resolution"><span class="glyphicon glyphicon-pencil"></span>Relative path resolution</h2>
-</div>
-<div class="panel-body">
-<p>Using the filesystem diagram below, if <code>pwd</code> displays <code>/home/thing</code>, what will <code>ls ../backup</code> display?</p>
-<ol style="list-style-type: decimal">
-<li><code>../backup: No such file or directory</code></li>
-<li><code>2012-12-01 2013-01-08 2013-01-27</code></li>
-<li><code>2012-12-01/ 2013-01-08/ 2013-01-27/</code></li>
-<li><code>original pnas_final pnas_sub</code></li>
-</ol>
-<div class="figure">
-<img src="fig/filesystem-challenge.svg" alt="File System for Challenge Questions" />
-<p class="caption">File System for Challenge Questions</p>
-</div>
-</div>
-</section>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
-<h2 id="ls-reading-comprehension"><span class="glyphicon glyphicon-pencil"></span><code>ls</code> reading comprehension</h2>
-</div>
-<div class="panel-body">
-<p>Assuming a directory structure as in the above Figure (File System for Challenge Questions), if <code>pwd</code> displays <code>/home/backup</code>, and <code>-r</code> tells <code>ls</code> to display things in reverse order, what command will display:</p>
-<pre><code>pnas_sub/ pnas_final/ original/</code></pre>
-<ol style="list-style-type: decimal">
-<li><code>ls pwd</code></li>
-<li><code>ls -r -F</code></li>
-<li><code>ls -r -F /home/backup</code></li>
-<li>Either #2 or #3 above, but not #1.</li>
-</ol>
-</div>
-</section>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
-<h2 id="exploring-more-ls-arguments"><span class="glyphicon glyphicon-pencil"></span>Exploring more <code>ls</code> arguments</h2>
-</div>
-<div class="panel-body">
-<p>What does the command <code>ls</code> do when used with the <code>-s</code> and <code>-h</code> arguments?</p>
-</div>
-</section>
+<blockquote>
+<h2 id="listing-files-by-size">Listing files by size</h2>
+<p>Navigate to the directory <code>data-shell/data/pdb</code>. Typing in <code>ls</code>, you should see several files with the extension <code>.pdb</code>. These are <em>protein data bank</em> files, that express the three-dimensional structure of large organic molecules.</p>
+<p>Note that the molecules are arranged in alphabetical order. We’d like instead to list them by <em>size</em> (number of bytes or characters). We know that there’s a switch that we can provide to the <code>ls</code> command to do this, but we’re not sure which one. Type in <code>man ls</code> to get information about <code>ls</code> and the various command switches available.</p>
+<p>Find the appropriate switch to list the contents of this directory by size.</p>
+</blockquote>
         </div>
       </div>
       </article>

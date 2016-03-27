@@ -43,7 +43,7 @@
 </section>
 <p>We now know how to explore files and directories, but how do we create them in the first place? Let’s go back to our <code>data-shell</code> directory on the Desktop and use <code>ls -F</code> to see what it contains:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">pwd</span></code></pre></div>
-<pre class="output"><code>/Users/nelle/Desktop/data-shell</code></pre>
+<pre class="output"><code>/home/nelle/data-shell</code></pre>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -F</code></pre></div>
 <pre class="output"><code>creatures/  molecules/           pizza.cfg
 data/       north-pacific-gyre/  solar.pdf
@@ -90,9 +90,9 @@ $ <span class="kw">nano</span> draft.txt</code></pre></div>
 <p>The Unix shell doesn’t have a trash bin that we can recover deleted files from (though most graphical interfaces to Unix do). Instead, when we delete files, they are unhooked from the file system so that their storage space on disk can be recycled. Tools for finding and recovering deleted files do exist, but there’s no guarantee they’ll work in any particular situation, since the computer may recycle the file’s disk space right away.</p>
 </div>
 </aside>
-<p>Let’s re-create that file and then move up one directory to <code>/Users/nelle</code> using <code>cd ..</code>:</p>
+<p>Let’s re-create that file and then move up one directory to <code>/home/nelle</code> using <code>cd ..</code>:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">pwd</span></code></pre></div>
-<pre class="output"><code>/Users/nelle/thesis</code></pre>
+<pre class="output"><code>/home/nelle/data-shell/thesis</code></pre>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nano</span> draft.txt
 $ <span class="kw">ls</span></code></pre></div>
 <pre class="output"><code>draft.txt</code></pre>
@@ -100,26 +100,12 @@ $ <span class="kw">ls</span></code></pre></div>
 <p>If we try to remove the entire <code>thesis</code> directory using <code>rm thesis</code>, we get an error message:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">rm</span> thesis</code></pre></div>
 <pre class="error"><code>rm: cannot remove `thesis&#39;: Is a directory</code></pre>
-<p>This happens because <code>rm</code> only works on files, not directories. The right command is <code>rmdir</code>, which is short for “remove directory”. It doesn’t work yet either, though, because the directory we’re trying to remove isn’t empty:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">rmdir</span> thesis</code></pre></div>
-<pre class="error"><code>rmdir: failed to remove `thesis&#39;: Directory not empty</code></pre>
-<p>This little safety feature can save you a lot of grief, particularly if you are a bad typist. To really get rid of <code>thesis</code> we must first delete the file <code>draft.txt</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">rm</span> thesis/draft.txt</code></pre></div>
-<p>The directory is now empty, so <code>rmdir</code> can delete it:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">rmdir</span> thesis</code></pre></div>
-<aside class="callout panel panel-info">
-<div class="panel-heading">
-<h2 id="with-great-power-comes-great-responsibility"><span class="glyphicon glyphicon-pushpin"></span>With Great Power Comes Great Responsibility</h2>
-</div>
-<div class="panel-body">
-<p>Removing the files in a directory just so that we can remove the directory quickly becomes tedious. Instead, we can use <code>rm</code> with the <code>-r</code> flag (which stands for “recursive”):</p>
+<p><code>rm</code> without any additional switches can only delete files, not directories. To remove the directory <code>thesis</code>, we use the <code>-r</code> switch (which stands for <em>recursive</em>).</p>
 <pre><code>$ rm -r thesis</code></pre>
 <p>This removes everything in the directory, then the directory itself. If the directory contains sub-directories, <code>rm -r</code> does the same thing to them, and so on. It’s very handy, but can do a lot of damage if used without care.</p>
-</div>
-</aside>
 <p>Let’s create that directory and file one more time. (Note that this time we’re running <code>nano</code> with the path <code>thesis/draft.txt</code>, rather than going into the <code>thesis</code> directory and running <code>nano</code> on <code>draft.txt</code> there.)</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">pwd</span></code></pre></div>
-<pre class="output"><code>/Users/nelle</code></pre>
+<pre class="output"><code>/home/nelle</code></pre>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> thesis</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nano</span> thesis/draft.txt
 $ <span class="kw">ls</span> thesis</code></pre></div>
@@ -160,6 +146,34 @@ thesis/quotations.txt</code></pre>
 </aside>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
+<h2 id="creating-a-directory-tree"><span class="glyphicon glyphicon-pencil"></span>Creating a directory tree</h2>
+</div>
+<div class="panel-body">
+<p>Nelle is finally beginning to write her thesis and wants to create the following (empty) files and directories as a starting point:</p>
+<div class="figure">
+<img src="fig/directory-tree-challenge-2.svg" alt="Nelle’s thesis directory" />
+<p class="caption">Nelle’s thesis directory</p>
+</div>
+<ul>
+<li>The text for her thesis will go in the file <code>thesis.md</code>.</li>
+<li>The readings from her experiments will go in the <code>experiments</code> directory, under subdirectories <code>2015-03-21</code> and <code>2015-04-16</code>, corresponding to the two days she collected data on. She will also write a script <code>analyze.py</code> to analyze those readings.</li>
+<li>There are also some <code>.pdb</code> files that are part of her analysis, and they need to be in the <code>data</code> directory.</li>
+</ul>
+<p>Create the directory <code>thesis</code> and all its contents in your home directory. Remember, <code>.pdb</code> files and <code>.py</code> files are just text files.</p>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="copying-and-moving-things"><span class="glyphicon glyphicon-pencil"></span>Copying and moving things</h2>
+</div>
+<div class="panel-body">
+<p>After a bit of writing, Nelle has discovered that there’s a better way for her to organize her thesis. Now, she also needs a <code>results</code> directory to store results. The <code>results</code> directory is just a copy of the <code>experiments</code> directory for now. She also wants to put her script <code>analyze.py</code> in a directory of its own, because she will write more scipts to do other analyses, and she’d like to keep them all in one place.</p>
+<p><img src="fig/directory-tree-challenge-1.svg" alt="Nelle’s thesis directory" />.</p>
+<p>Starting from the files and directories you made in the previous challenge, reorganize the <code>thesis</code> directory to match the diagram above.</p>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
 <h2 id="renaming-files"><span class="glyphicon glyphicon-pencil"></span>Renaming files</h2>
 </div>
 <div class="panel-body">
@@ -180,7 +194,7 @@ thesis/quotations.txt</code></pre>
 <div class="panel-body">
 <p>What is the output of the closing <code>ls</code> command in the sequence shown below?</p>
 <pre><code>$ pwd
-/Users/jamie/data
+/home/jamie/data
 $ ls
 proteins.dat
 $ mkdir recombine
