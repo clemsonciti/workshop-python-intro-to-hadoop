@@ -44,6 +44,7 @@ to get started.
 6. [Performing repetitive tasks](05-loop.html)
 7. [Shell scripts](06-shell-scripts.html)
 8. [Finding things](07-find.html)
+9. [File permissions](08-permissions.html)
 
 [swc-lessons]: https://software-carpentry.org/lessons/
 [contributing]: https://github.com/shwina/hpc-novice/blob/gh-pages/CONTRIBUTING.md 

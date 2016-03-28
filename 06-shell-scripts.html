@@ -83,16 +83,6 @@ ATOM     10  H           1       1.271   1.378   0.122  1.00  0.00
 ATOM     11  H           1      -0.074  -0.384   1.288  1.00  0.00
 ATOM     12  H           1      -0.048  -1.362  -0.205  1.00  0.00
 ATOM     13  H           1      -1.183   0.500  -1.412  1.00  0.00</code></pre>
-<aside class="callout panel panel-info">
-<div class="panel-heading">
-<h2 id="double-quotes-around-arguments"><span class="glyphicon glyphicon-pushpin"></span>Double-Quotes Around Arguments</h2>
-</div>
-<div class="panel-body">
-<p>We put the <code>$1</code> inside of double-quotes in case the filename happens to contain any spaces. The shell uses whitespace to separate arguments, so we have to be careful when using arguments that might have whitespace in them. If we left out these quotes, and <code>$1</code> expanded to a filename like <code>methyl butane.pdb</code>, the command in the script would effectively be:</p>
-<pre><code>head -n 15 methyl butane.pdb | tail -n 5</code></pre>
-<p>This would call <code>head</code> on two separate files, <code>methyl</code> and <code>butane.pdb</code>, which is probably not what we intended.</p>
-</div>
-</aside>
 <p>We still need to edit <code>middle.sh</code> each time we want to adjust the range of lines, though. Let’s fix that by using the special variables <code>$2</code> and <code>$3</code>:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nano</span> middle.sh</code></pre></div>
 <pre class="output"><code>head -n &quot;$2&quot; &quot;$1&quot; | tail -n &quot;$3&quot;</code></pre>
