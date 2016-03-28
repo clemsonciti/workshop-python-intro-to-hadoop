@@ -1,3 +1,3 @@
-# hpc-novice
+# linux-workshop
 
-Introduction to Linux and High Performance Computing on the Palmetto Cluster.
+Introduction to Linux from the command line.
