@@ -418,17 +418,6 @@ $ grep "FE" $(find .. -name '*.pdb')
 > modern programming languages, Python included, have borrowed a lot of
 > ideas from it, and imitation is also the sincerest form of praise.
 
-The Unix shell is older than most of the people who use it. It has
-survived so long because it is one of the most productive programming
-environments ever created --- maybe even *the* most productive. Its syntax
-may be cryptic, but people who have mastered it can experiment with
-different commands interactively, then use what they have learned to
-automate their work. Graphical user interfaces may be better at the
-first, but the shell is still unbeaten at the second. And as Alfred
-North Whitehead wrote in 1911, "Civilization advances by extending the
-number of important operations which we can perform without thinking
-about them."
-
 > ## Using grep {.challenge}
 >
 > ~~~
@@ -457,38 +446,19 @@ about them."
 > 3. `grep -w "of" haiku.txt`
 > 4. `grep -i "of" haiku.txt`
 
-> ## `find` pipeline reading comprehension {.challenge}
+> ## Using grep to count occurrences {.challenge}
 >
-> Write a short explanatory comment for the following shell script:
+> A very common use of grep is to count
+> the number of occurrences of a certain pattern
+> in a file.
 >
-> ~~~ {.bash}
-> wc -l $(find . -name '*.dat') | sort -n
-> ~~~
-
-> ## Matching `ose.dat` but not `temp` {}{.challenge}
->
-> The `-v` flag to `grep` inverts pattern matching, so that only lines
-> which do *not* match the pattern are printed. Given that, which of
-> the following commands will find all files in `/data` whose names
-> end in `ose.dat` (e.g., `sucrose.dat` or `maltose.dat`), but do
-> *not* contain the word `temp`?
->
-> 1. `find /data -name '*.dat' | grep ose | grep -v temp`
->
-> 2. `find /data -name ose.dat | grep -v temp`
->
-> 3. `grep -v "temp" $(find /data -name '*ose.dat')`
->
-> 4. None of the above.
-
-> ## Little Women {.challenge}
->
-> You and your friend, having just finished reading *Little Women* by
-> Louisa May Alcott, are in an argument.  Of the four sisters in the
-> book, Jo, Meg, Beth, and Amy, your friend thinks that Jo was the
-> most mentioned.  You, however, are certain it was Amy.  Luckily, you
-> have a file `LittleWomen.txt` containing the full text of the novel.
-> Using a`for` loop, how would you tabulate the number of times each
-> of the four sisters is mentioned?  Hint: one solution might employ
-> the commands `grep` and `wc` and a `|`, while another might utilize
-> `grep` options.
+> Navigate to `/data-shell/creatures`.
+> Look at the files `unicorn.dat` and `basilisk.dat`.
+> In each of these files,
+> count the number of occurrences of the sequence
+> `ATTA`.
+> What about sequences that only end with
+> `GT`?
+> Just like the `^` symbol refers to the beginning
+> of the line,
+> the `$` symbol refers to the end of the line.

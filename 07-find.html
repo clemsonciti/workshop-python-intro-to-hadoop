@@ -229,7 +229,6 @@ Software is like that.</code></pre>
 <p>The third choice is to recognize that the shell and text processing have their limits, and to use a programming language such as Python instead. When the time comes to do this, don’t be too hard on the shell: many modern programming languages, Python included, have borrowed a lot of ideas from it, and imitation is also the sincerest form of praise.</p>
 </div>
 </aside>
-<p>The Unix shell is older than most of the people who use it. It has survived so long because it is one of the most productive programming environments ever created — maybe even <em>the</em> most productive. Its syntax may be cryptic, but people who have mastered it can experiment with different commands interactively, then use what they have learned to automate their work. Graphical user interfaces may be better at the first, but the shell is still unbeaten at the second. And as Alfred North Whitehead wrote in 1911, “Civilization advances by extending the number of important operations which we can perform without thinking about them.”</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
 <h2 id="using-grep"><span class="glyphicon glyphicon-pencil"></span>Using grep</h2>
@@ -258,33 +257,11 @@ Software is like that.</code></pre>
 </section>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2 id="find-pipeline-reading-comprehension"><span class="glyphicon glyphicon-pencil"></span><code>find</code> pipeline reading comprehension</h2>
+<h2 id="using-grep-to-count-occurrences"><span class="glyphicon glyphicon-pencil"></span>Using grep to count occurrences</h2>
 </div>
 <div class="panel-body">
-<p>Write a short explanatory comment for the following shell script:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">wc</span> -l <span class="ot">$(</span><span class="kw">find</span> . -name <span class="st">&#39;*.dat&#39;</span><span class="ot">)</span> <span class="kw">|</span> <span class="kw">sort</span> -n</code></pre></div>
-</div>
-</section>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
-<h2 id="matching-ose.dat-but-not-temp"><span class="glyphicon glyphicon-pencil"></span>Matching <code>ose.dat</code> but not <code>temp</code></h2>
-</div>
-<div class="panel-body">
-<p>The <code>-v</code> flag to <code>grep</code> inverts pattern matching, so that only lines which do <em>not</em> match the pattern are printed. Given that, which of the following commands will find all files in <code>/data</code> whose names end in <code>ose.dat</code> (e.g., <code>sucrose.dat</code> or <code>maltose.dat</code>), but do <em>not</em> contain the word <code>temp</code>?</p>
-<ol style="list-style-type: decimal">
-<li><p><code>find /data -name '*.dat' | grep ose | grep -v temp</code></p></li>
-<li><p><code>find /data -name ose.dat | grep -v temp</code></p></li>
-<li><p><code>grep -v &quot;temp&quot; $(find /data -name '*ose.dat')</code></p></li>
-<li><p>None of the above.</p></li>
-</ol>
-</div>
-</section>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
-<h2 id="little-women"><span class="glyphicon glyphicon-pencil"></span>Little Women</h2>
-</div>
-<div class="panel-body">
-<p>You and your friend, having just finished reading <em>Little Women</em> by Louisa May Alcott, are in an argument. Of the four sisters in the book, Jo, Meg, Beth, and Amy, your friend thinks that Jo was the most mentioned. You, however, are certain it was Amy. Luckily, you have a file <code>LittleWomen.txt</code> containing the full text of the novel. Using a<code>for</code> loop, how would you tabulate the number of times each of the four sisters is mentioned? Hint: one solution might employ the commands <code>grep</code> and <code>wc</code> and a <code>|</code>, while another might utilize <code>grep</code> options.</p>
+<p>A very common use of grep is to count the number of occurrences of a certain pattern in a file.</p>
+<p>Navigate to <code>/data-shell/creatures</code>. Look at the files <code>unicorn.dat</code> and <code>basilisk.dat</code>. In each of these files, count the number of occurrences of the sequence <code>ATTA</code>. What about sequences that only end with <code>GT</code>? Just like the <code>^</code> symbol refers to the beginning of the line, the <code>$</code> symbol refers to the end of the line.</p>
 </div>
 </section>
         </div>
