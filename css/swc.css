@@ -345,6 +345,10 @@ div.files {
     background: #2b3990;
 }
 
+.clemson-orange {
+    background: #F66733
+}
+
 /* Main menu at the top of every page. */
 div.mainmenu {
     clear: both;
