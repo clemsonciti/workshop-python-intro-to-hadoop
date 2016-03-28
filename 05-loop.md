@@ -468,50 +468,55 @@ so she decides to get some coffee and catch up on her reading.
 > 4.  All of the text from `fructose.dat`, `glucose.dat` and `sucrose.dat` would be printed
 >     to the screen and saved to a file called `sugar.dat`
 
-> ## Doing a Dry Run {.challenge}
->
-> Suppose we want to preview the commands the following loop will execute
-> without actually running those commands:
->
-> ~~~ {.bash}
-> for file in *.dat
-> do
->   analyze $file > analyzed-$file
-> done
-> ~~~
->
-> What is the difference between the two loops below, and which one would we
-> want to run?
->
-> ~~~ {.bash}
-> # Version 1
-> for file in *.dat
-> do
->   echo analyze $file > analyzed-$file
-> done
-> ~~~
->
-> ~~~ {.bash}
-> # Version 2
-> for file in *.dat
-> do
->   echo "analyze $file > analyzed-$file"
-> done
-> ~~~
 
-> ## Nested Loops {.challenge}
+> ## Extracting lines from multiple files {.challenge}
+> 
+> Navigate to the `data-shell/data/elements` directory.
+> Here, you will find several `.xml` files, each
+> containing information about some chemical element.
+> `H.xml`, for instance contains information about Hydrogen.
 >
-> Suppose we want to set up up a directory structure to organize
-> some experiments measuring the growth rate under different sugar
-> types *and* different temperatures.  What would be the
-> result of the following code:
+> The contents of each file look like this:
+>
+> ~~~~
+> <element name="Hydrogen"/>
+>   <symbol>H</symbol>
+>   <atomic-number>1</atomic-number>
+>   <atomic-weight>1.00794</atomic-weight>
+>   <oxidation-states>+1, -1</oxidation-states>
+>   <state-at-room-temp>gas, non-metal</state-at-room-temp>
+>   <melting-point>14.01</melting-point>
+>   <boiling-point>20.28</boiling-point>
+> </element>
+> ~~~~
+>
+> `.xml` files use "tags" to associate values
+> with names.
+> The value of the `melting-point`, for example,
+> appears between the opening and closing tags
+> `<melting-point>` and `</melting-point>`.
+>
+> 1. What command would you use to extract the
+> first line of `H.xml`.
+>
+> 2. What commands would you use to extract the
+> *third* line, i.e., the line containing
+> the melting point, of `H.xml`. (Hint, you will
+> need to use two commands with a pipe (`|`) in between).
+>
+> 3. Write a loop that prints the first line
+> and the third line of each file in
+> the directory. The first few lines of the output
+> should resemble the following:
+>
 >
 > ~~~
-> for sugar in fructose glucose sucrose
-> do
->     for temperature in 25 30 37 40
->     do
->         mkdir $sugar-$temperature
->     done
-> done
+> <element name="Actinium"/>
+>   <atomic-number>89</atomic-number>
+> <element name="Silver"/>
+>   <atomic-number>47</atomic-number>
+> <element name="Aluminum"/>
+>   <atomic-number>13</atomic-number>
+>
+>
 > ~~~
