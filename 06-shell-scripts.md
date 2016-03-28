@@ -283,160 +283,72 @@ what they discover about their data and their workflow with one call to `history
 and a bit of editing to clean up the output
 and save it as a shell script.
 
-## Nelle's Pipeline: Creating a Script
-
-An off-hand comment from her supervisor has made Nelle realize that
-she should have provided a couple of extra parameters to `goostats` when she processed her files.
-This might have been a disaster if she had done all the analysis by hand,
-but thanks to `for` loops,
-it will only take a couple of hours to re-do.
-
-But experience has taught her that if something needs to be done twice,
-it will probably need to be done a third or fourth time as well.
-She runs the editor and writes the following:
-
-~~~
-# Calculate reduced stats for data files at J = 100 c/bp.
-for datafile in "$@"
-do
-    echo $datafile
-    bash goostats -J 100 -r $datafile stats-$datafile
-done
-~~~
-
-(The parameters `-J 100` and `-r` are the ones her supervisor said she should have used.)
-She saves this in a file called `do-stats.sh`
-so that she can now re-do the first stage of her analysis by typing:
-
-~~~ {.bash}
-$ bash do-stats.sh *[AB].txt
-~~~
-
-She can also do this:
-
-~~~ {.bash}
-$ bash do-stats.sh *[AB].txt | wc -l
-~~~
-
-so that the output is just the number of files processed
-rather than the names of the files that were processed.
-
-One thing to note about Nelle's script is that
-it lets the person running it decide what files to process.
-She could have written it as:
-
-~~~
-# Calculate reduced stats for  A and Site B data files at J = 100 c/bp.
-for datafile in *[AB].txt
-do
-    echo $datafile
-    bash goostats -J 100 -r $datafile stats-$datafile
-done
-~~~
-
-The advantage is that this always selects the right files:
-she doesn't have to remember to exclude the 'Z' files.
-The disadvantage is that it *always* selects just those files --- she can't run it on all files
-(including the 'Z' files),
-or on the 'G' or 'H' files her colleagues in Antarctica are producing,
-without editing the script.
-If she wanted to be more adventurous,
-she could modify her script to check for command-line parameters,
-and use `*[AB].txt` if none were provided.
-Of course, this introduces another tradeoff between flexibility and complexity.
-
-> ## Variables in shell scripts {.challenge}
+> ## Nelle's Pipeline: Creating a Script
+> 
+> Nelle's loop looks like this:
 >
-> In the molecules directory, you have a shell script called `script.sh` containing the
-> following commands:
->
-> ~~~
-> head -n $2 $1
-> tail -n $3 $1
-> ~~~
->
-> While you are in the molecules directory, you type the following command:
->
-> ~~~
-> bash script.sh '*.pdb' 1 1
-> ~~~
->
-> Which of the following outputs would you expect to see?
->
-> 1. All of the lines between the first and the last lines of each file ending in `.pdb`
->    in the molecules directory
-> 2. The first and the last line of each file ending in `.pdb` in the molecules directory
-> 3. The first and the last line of each file in the molecules directory
-> 4. An error because of the quotes around `*.pdb`
-
-> ## List unique species {.challenge}
->
-> Leah has several hundred data files, each of which is formatted like this:
->
-> ~~~
-> 2013-11-05,deer,5
-> 2013-11-05,rabbit,22
-> 2013-11-05,raccoon,7
-> 2013-11-06,rabbit,19
-> 2013-11-06,deer,2
-> 2013-11-06,fox,1
-> 2013-11-07,rabbit,18
-> 2013-11-07,bear,1
-> ~~~
->
-> Write a shell script called `species.sh` that takes any number of
-> filenames as command-line parameters, and uses `cut`, `sort`, and
-> `uniq` to print a list of the unique species appearing in each of
-> those files separately.
-
-> ## Find the longest file with a given extension {.challenge}
->
-> Write a shell script called `longest.sh` that takes the name of a
-> directory and a filename extension as its parameters, and prints
-> out the name of the file with the most lines in that directory
-> with that extension. For example:
->
-> ~~~
-> $ bash longest.sh /tmp/data pdb
-> ~~~
->
-> would print the name of the `.pdb` file in `/tmp/data` that has
-> the most lines.
-
-> ## Why record commands in the history before running them? {.challenge}
->
-> If you run the command:
->
-> ~~~
-> history | tail -n 5 > recent.sh
-> ~~~
->
-> the last command in the file is the `history` command itself, i.e.,
-> the shell has added `history` to the command log before actually
-> running it. In fact, the shell *always* adds commands to the log
-> before running them. Why do you think it does this?
-
-> ## Script reading comprehension {.challenge}
->
-> Joel's `data` directory contains three files: `fructose.dat`,
-> `glucose.dat`, and `sucrose.dat`. Explain what a script called
-> `example.sh` would do when run as `bash example.sh *.dat` if it
-> contained the following lines:
->
-> ~~~
-> # Script 1
-> echo *.*
-> ~~~
->
-> ~~~
-> # Script 2
-> for filename in $1 $2 $3
+> for datafile in *[AB].txt
 > do
->     cat $filename
+> echo $datafile
+> bash goostats $datafile stats-$datafile
 > done
+>
+> Put this loop in a script called `run-stats.sh`---the
+> script must be in the same directory as Nelle's
+> data files.
+> Run the script with the following command:
+>
+> ~~~{.bash}
+> bash run-stats.sh
 > ~~~
 >
+> Check that the output files `stats-*.txt` are produced.
+> Remove those output files:
+>
+> ~~~{.bash}
+> rm stats-*.txt
 > ~~~
-> # Script 3
-> echo $@.dat
+>
+> Notice that the script `run-stats.sh` only works
+> on the files that match the pattern `*[AB].txt`.
+> If we want to change this behaviour,
+> we have to edit the script by hand each time.
+> What we'd like is to be able to run the analysis
+> on any file(s) that we specify.
+> One way to do this is to have `run-stats.sh`
+> read the name of the files we'd like to analyze
+> as an argument (or parameter):
+>
+> ~~~{.bash}
+> bash run-stats.sh NENE01812A.txt NENE01843B.txt
 > ~~~
+>
+> Then of course, `run-stats.sh` will need to look like this:
+> 
+> for datafile in $1 $2
+> do
+> echo $datafile
+> bash goostats $datafile stats-$datafile
+> done
+>
+> This is still no good,
+> if we had 3 files to analyze,
+> we'd have to change the loop.
+> Moreover, if we had more than a dozen or so files,
+> it becomes impractical to write the loop in this way.
+>
+> The special variable `$*` comes to the rescue
+> here. `$*` expands to
+> `$1 $2 $3 ...` up to however many arguments
+> are provided.
+> Using this, write `run-stats.sh` that 
+> allows Nelle to analyze any list of files.
+>
+>
+> Test your script for the following cases:
+>
+> 1. Analyze only the files `NENE01843B.txt`,
+> `NENE01978B.txt`, and `NENE02040B.txt`.
+> 2. Analyze all the files from sites `A` and `Z`,
+> i.e, files that end with `A.txt` and `Z.txt`.
+

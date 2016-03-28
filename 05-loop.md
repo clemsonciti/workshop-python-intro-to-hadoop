@@ -509,7 +509,6 @@ so she decides to get some coffee and catch up on her reading.
 > the directory. The first few lines of the output
 > should resemble the following:
 >
->
 > ~~~
 > <element name="Actinium"/>
 >   <atomic-number>89</atomic-number>
