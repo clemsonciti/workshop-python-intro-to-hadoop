@@ -10,7 +10,7 @@ title: Introduction to Linux
 > 1. Create, manage and navigate files and directories on
 >    the linux filesystem.
 > 2. Chain together linux commands to perform complex tasks
->    such as searching, sorting and filtering.
+>    such as sorting and filtering.
 > 3. Write loops to perform repetitive tasks.
 > 4. Write shell-scripts to automate tasks.
 
@@ -43,6 +43,7 @@ to get started.
 5. [Pipes and filters](04-pipefilter.html)
 6. [Performing repetitive tasks](05-loops.html)
 7. [Shell scripts](06-shell-scripts.html)
+8. [Finding things](07-find.html)
 
 [swc-lessons]: https://software-carpentry.org/lessons/
 [contributing]: https://github.com/shwina/hpc-novice/blob/gh-pages/CONTRIBUTING.md 
