@@ -497,11 +497,11 @@ so she decides to get some coffee and catch up on her reading.
 > `<melting-point>` and `</melting-point>`.
 >
 > 1. What command would you use to extract the
-> first line of `H.xml`.
+> first line of `H.xml`?
 >
 > 2. What commands would you use to extract the
 > *third* line, i.e., the line containing
-> the atomic number, of `H.xml`. (Hint, you can
+> the atomic number, of `H.xml`? (Hint, you can
 > use two commands with a pipe (`|`) in between).
 >
 > 3. Write a loop that prints the first line
