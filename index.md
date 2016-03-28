@@ -41,7 +41,7 @@ to get started.
 3. [Files and directories](02-filedir.html)
 4. [Creating things](03-create.html)
 5. [Pipes and filters](04-pipefilter.html)
-6. [Performing repetitive tasks](05-loops.html)
+6. [Performing repetitive tasks](05-loop.html)
 7. [Shell scripts](06-shell-scripts.html)
 8. [Finding things](07-find.html)
 
