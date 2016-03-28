@@ -1,2 +1,3 @@
 # hpc-novice
-Novice introduction to high performance computing
+
+Introduction to Linux and High Performance Computing on the Palmetto Cluster.
