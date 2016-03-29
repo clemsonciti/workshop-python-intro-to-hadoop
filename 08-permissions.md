@@ -164,7 +164,7 @@ $ ls -l final.grd
 -rwxrwxrwx 1 vlad bio  4215  2010-08-29 22:30 final.grd
 ~~~
 
-Whoops: everyone in the world can read it&mdash;and what's worse,
+Whoops: everyone in the world can read it---and what's worse,
 modify it!
 (They could also try to run the grades file as a program,
 which would almost certainly not work.)
@@ -245,7 +245,7 @@ The permissions for `.` and `..` (this directory and its parent) start with a 'd
 But look at the rest of their permissions:
 the 'x' means that "execute" is turned on.
 What does that mean?
-A directory isn't a program&mdash;how can we "run" it?
+A directory isn't a program---how can we "run" it?
 
 In fact, 'x' means something different for directories.
 It gives someone the right to *traverse* the directory, but not to look at its contents.
