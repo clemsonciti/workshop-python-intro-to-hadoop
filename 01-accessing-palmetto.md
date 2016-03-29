@@ -63,6 +63,62 @@ We will mostly refer to the prompt as just `$`, i.e.,
 $ 
 ~~~
 
+The first few commands that you will enter into the shell
+will be to download a `.zip` file and unzip it.
+These commands are rather cryptic,
+So don't worry if you don't understand them.
+
+Download the `.zip` file:
+
+~~~{.bash}
+wget http://clemsoncoe.github.io/linux-workshop/swc-data-shell.zip
+~~~
+
+~~~{.output}
+--2016-03-29 10:12:13--  http://clemsoncoe.github.io/linux-workshop/swc-data-shell.zip
+Resolving clemsoncoe.github.io... 23.235.46.133
+Connecting to clemsoncoe.github.io|23.235.46.133|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 168007 (164K) [application/zip]
+Saving to: “swc-data-shell.zip”
+
+100%[====================================================================================================================>] 168,007     --.-K/s   in 0.09s
+
+2016-03-29 10:12:13 (1.76 MB/s) - “swc-data-shell.zip” saved [168007/168007]
+~~~
+
+Unzip it:
+
+~~~{.bash}
+unzip swc-data-shell.zip
+~~~
+
+~~~{.output}
+Archive:  swc-data-shell.zip
+   creating: data-shell/
+  inflating: data-shell/.bash_profile
+   creating: data-shell/creatures/
+  inflating: data-shell/creatures/basilisk.dat
+  inflating: data-shell/creatures/unicorn.dat
+   creating: data-shell/data/
+  inflating: data-shell/data/amino-acids.txt
+  inflating: data-shell/data/animals.txt
+  .
+  .
+  .
+~~~
+
+Finally, type in the following command; if you see the output below,
+then the file was downloaded and unzipped successfully:
+
+~~~{.bash}
+data-shell/
+~~~
+
+~~~{.output}
+-bash: data-shell/: is a directory
+~~~
+
 ## Basic structure of the cluster
 
 <img src="fig/palmetto-structure.png" \

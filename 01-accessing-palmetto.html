@@ -56,6 +56,36 @@
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">[<span class="kw">username@user001</span> ~]$ </code></pre></div>
 <p>The prompt in a bash shell usually consists of a dollar (<code>$</code>) sign, and shows that the shell is waiting for input. The prompt may also contain other information: this prompt tells you your username and which node you are connected to - <code>user001</code> is the “login” node. It also tells you your current directory, i.e., <code>~</code>, which, as you will learn shortly, is short for your <em>home</em> directory. We will mostly refer to the prompt as just <code>$</code>, i.e.,</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ </code></pre></div>
+<p>The first few commands that you will enter into the shell will be to download a <code>.zip</code> file and unzip it. These commands are rather cryptic, So don’t worry if you don’t understand them.</p>
+<p>Download the <code>.zip</code> file:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">wget</span> http://clemsoncoe.github.io/linux-workshop/swc-data-shell.zip</code></pre></div>
+<pre class="output"><code>--2016-03-29 10:12:13--  http://clemsoncoe.github.io/linux-workshop/swc-data-shell.zip
+Resolving clemsoncoe.github.io... 23.235.46.133
+Connecting to clemsoncoe.github.io|23.235.46.133|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 168007 (164K) [application/zip]
+Saving to: “swc-data-shell.zip”
+
+100%[====================================================================================================================&gt;] 168,007     --.-K/s   in 0.09s
+
+2016-03-29 10:12:13 (1.76 MB/s) - “swc-data-shell.zip” saved [168007/168007]</code></pre>
+<p>Unzip it:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">unzip</span> swc-data-shell.zip</code></pre></div>
+<pre class="output"><code>Archive:  swc-data-shell.zip
+   creating: data-shell/
+  inflating: data-shell/.bash_profile
+   creating: data-shell/creatures/
+  inflating: data-shell/creatures/basilisk.dat
+  inflating: data-shell/creatures/unicorn.dat
+   creating: data-shell/data/
+  inflating: data-shell/data/amino-acids.txt
+  inflating: data-shell/data/animals.txt
+  .
+  .
+  .</code></pre>
+<p>Finally, type in the following command; if you see the output below, then the file was downloaded and unzipped successfully:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">data-shell/</span></code></pre></div>
+<pre class="output"><code>-bash: data-shell/: is a directory</code></pre>
 <h2 id="basic-structure-of-the-cluster">Basic structure of the cluster</h2>
 <p><img src="fig/palmetto-structure.png" \
      alt="Structure of the Palmetto Cluster" \
