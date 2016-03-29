@@ -267,7 +267,7 @@ what they discover about their data and their workflow with one call to `history
 and a bit of editing to clean up the output
 and save it as a shell script.
 
-> ## Nelle's Pipeline: Creating a Script
+> ## Nelle's Pipeline: Creating a Script {.challenge}
 > 
 > Nelle's loop looks like this:
 >

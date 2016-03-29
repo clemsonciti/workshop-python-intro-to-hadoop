@@ -217,65 +217,6 @@ NENE01736A.txt
 </aside>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2 id="variables-in-loops"><span class="glyphicon glyphicon-pencil"></span>Variables in Loops</h2>
-</div>
-<div class="panel-body">
-<p>Suppose that <code>ls</code> initially displays:</p>
-<pre><code>fructose.dat    glucose.dat   sucrose.dat</code></pre>
-<p>What is the output of:</p>
-<pre><code>for datafile in *.dat
-do
-    ls *.dat
-done</code></pre>
-<p>Now, what is the output of:</p>
-<pre><code>for datafile in *.dat
-do
-  ls $datafile
-done</code></pre>
-<p>Why do these two loops give you different outputs?</p>
-</div>
-</section>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
-<h2 id="saving-to-a-file-in-a-loop---part-one"><span class="glyphicon glyphicon-pencil"></span>Saving to a File in a Loop - Part One</h2>
-</div>
-<div class="panel-body">
-<p>In the same directory, what is the effect of this loop?</p>
-<pre><code>for sugar in *.dat
-do
-    echo $sugar
-    cat $sugar &gt; xylose.dat
-done</code></pre>
-<ol style="list-style-type: decimal">
-<li>Prints <code>fructose.dat</code>, <code>glucose.dat</code>, and <code>sucrose.dat</code>, and the text from <code>sucrose.dat</code> will be saved to a file called <code>xylose.dat</code>.</li>
-<li>Prints <code>fructose.dat</code>, <code>glucose.dat</code>, and <code>sucrose.dat</code>, and the text from all three files would be concatenated and saved to a file called <code>xylose.dat</code>.</li>
-<li>Prints <code>fructose.dat</code>, <code>glucose.dat</code>, <code>sucrose.dat</code>, and <code>xylose.dat</code>, and the text from <code>sucrose.dat</code> will be saved to a file called <code>xylose.dat</code>.</li>
-<li>None of the above.</li>
-</ol>
-</div>
-</section>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
-<h2 id="saving-to-a-file-in-a-loop---part-two"><span class="glyphicon glyphicon-pencil"></span>Saving to a File in a Loop - Part Two</h2>
-</div>
-<div class="panel-body">
-<p>In another directory, where <code>ls</code> returns:</p>
-<pre><code>fructose.dat    glucose.dat   sucrose.dat   maltose.txt</code></pre>
-<p>What would be the output of the following loop?</p>
-<pre><code>for datafile in *.dat
-do
-    cat $datafile &gt;&gt; sugar.dat
-done</code></pre>
-<ol style="list-style-type: decimal">
-<li>All of the text from <code>fructose.dat</code>, <code>glucose.dat</code> and <code>sucrose.dat</code> would be concatenated and saved to a file called <code>sugar.dat</code>.</li>
-<li>The text from <code>sucrose.dat</code> will be saved to a file called <code>sugar.dat</code>.</li>
-<li>All of the text from <code>fructose.dat</code>, <code>glucose.dat</code>, <code>sucrose.dat</code> and <code>maltose.txt</code> would be concatenated and saved to a file called <code>sugar.dat</code>.</li>
-<li>All of the text from <code>fructose.dat</code>, <code>glucose.dat</code> and <code>sucrose.dat</code> would be printed to the screen and saved to a file called <code>sugar.dat</code></li>
-</ol>
-</div>
-</section>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
 <h2 id="extracting-lines-from-multiple-files"><span class="glyphicon glyphicon-pencil"></span>Extracting lines from multiple files</h2>
 </div>
 <div class="panel-body">
