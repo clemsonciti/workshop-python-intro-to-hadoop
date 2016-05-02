@@ -1,30 +1,31 @@
 ---
 layout: page
-title: Introduction to Linux
+title: Introduction to Hadoop
 ---
 
 > ## Learning objectives {.objectives}
 >
 > By the end of this workshop, you will be able to
-> 
+>
 > 1. Create, manage and navigate files and directories on
->    the linux filesystem.
-> 2. Chain together linux commands to perform complex tasks
->    such as sorting and filtering.
-> 3. Write loops to perform repetitive tasks.
-> 4. Write shell-scripts to automate tasks.
+>    the Hadoop Distributed File System (HDFS).
+> 2. Understand the concept of data locality in distributed system.
+> 3. Understand how big data files are distributed across HDFS and manipulated by MapReduce programming paradigm to facilitate data locality.
+> 3. Write MapReduce Python programs to analyze a large data set.
+> 4. Integrate MapReduce processing with standard Python programs to facilitate complex analysis.
 
 > ## Prerequesites {.prereq}
-> 
-> No prior experience with the Linux
-> or command-line is required.
+> This workshop requires prerequisites knowledges that are equivalent to the following COE workshops:
+> 1. Introduction to research computing on the Palmetto Cluster
+> 2. Introduction to Linux
+> 3. Introduction to Python
 
 ## Contributing
 
-These lessons are based on the
-[Software Carpentry][swc-lessons] lesson materials,
+These lessons are modeled after the structure of
+[Data Carpentry][dc-lessons] lesson materials,
 an open source project.
-Like Software Carpentry, we welcome contributions
+Like Data Carpentry, we welcome contributions
 of all kinds:
 new lessons,
 fixes/improvements to existing material,
@@ -34,7 +35,7 @@ and reviews of proposed changes are all equally welcome.
 Please see our page on [Contributing][contributing]
 to get started.
 
-## Introduction to Linux
+## Introduction to Hadoop
 
 1. [Introduction to the Unix shell](00-intro.html)
 2. [Accessing the Palmetto cluster](01-accessing-palmetto.html)
@@ -47,4 +48,4 @@ to get started.
 9. [File permissions](08-permissions.html)
 
 [swc-lessons]: https://software-carpentry.org/lessons/
-[contributing]: https://github.com/shwina/hpc-novice/blob/gh-pages/CONTRIBUTING.md 
+[contributing]: https://github.com/shwina/hpc-novice/blob/gh-pages/CONTRIBUTING.md
