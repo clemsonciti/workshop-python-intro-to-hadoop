@@ -7,54 +7,12 @@ minutes: 20
 ---
 
 > ## Learning objectives {.objectives}
-> * Learn how to access the web-based Jupyter notebook.
 > * Learn how to use the Hadoop command in Jupyter shells.
 > * Learn how to access the web UI of the Hadoop Distributed File System.
 
 In this workshop, we will leverage the Jupyter infrastructure at Clemson
-University to directly interact with Hadoop.
-
-## Jupyter
-
-To start using the Jupyter notebook, go to **https://webapp01-ext.palmetto.clemson.edu:8443**
-and sign in with your Clemson credentials. Next, click **Start My Server** to
-spawn a new Jupyter notebook. You should see the content of your home directory
- on Palmetto under **Files**.
-
-<br>
-<img src="fig/jupyter/login.png" \
-     alt="Login" \
-     style="height:300px">
-<br>
-
-Under **New**, create a new folder. This folder will appear immediately in your
- home directly with the name **Untitled Folder**. Check the selection box next
- to this folder, a button called **Rename** will appear below the **Files**
- tab. Click this button to change this folder to a name of your choice. Click
- on this folder to go to the next level.
-
-<br>
-<img src="fig/jupyter/folder.png" \
-     alt="Create New Folder" \
-     style="height:300px">
-<br>
-
-Use the menu under **New** once again to create a new Jupyter notebook using
-Python 3.0 distributed through Anaconda 2.5.0 by Continuum.
-
-<br>
-<img src="fig/jupyter/notebook.png" \
-     alt="Create New Folder" \
-     style="height:300px">
-<br>
-
-Change the name of this notebook to "Introduction to Hadoop".
-
-<br>
-<img src="fig/jupyter/notebook-2.png" \
-     alt="Create New Folder" \
-     style="height:300px">
-<br>
+University to directly interact with Hadoop. Technical details on how to use 
+the Jupyter infrastructure can be found at **https://clemsonciti.github.io/jupyterhub-userdocs/**
 
 For this workshop, the default codes inside a cell will be interpreted as Python
  language. However, any line that begins with **!** will be interpreted as a
@@ -70,10 +28,15 @@ print ("Hello World")
 
 
 ```python
-!ls data
+!ls /
 ```
 
-    gutenberg-shakespeare.txt  ml-10m.zip
+    bin	    common1  feltus	    lost+found	panicle   selinux   usr
+    bioengr     cugi     home	    media	proc	  smlc	    var
+    boot	    cvmfs    install	    misc	root	  software  xcatpost
+    cgroup	    dev      lib	    mnt		sbin	  srv	    zfs
+    collective  etc      lib64	    net		scratch1  sys
+    common	    fast     local_scratch  opt		scratch2  tmp
 
 
 ## HDFS commands
