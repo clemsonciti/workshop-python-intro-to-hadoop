@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Introduction to Hadoop</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://citi.clemson.edu" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/paw.gif" width="100px" height="auto" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Introduction to Hadoop</h1></a>
+          <h2 class="subtitle">Creating a Mapper</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Understand the process of viewing data in terms of Key/Value pair</li>
+<li>Understand the process of going backward from the desired answer to the logic for reducer and then mapper</li>
+<li>Create python-based mapper function and test against non-Hadoop input</li>
+</ul>
+</div>
+</section>
+<p>Now that we are familiar with Hadoop basic commands, it is time to revisit the initial analyses on the movie dataset. Let’s start with one simple analysis, which is to find rating averages of movies over the years.</p>
+<p>We first examine the structure of data file via README.txt.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">!<span class="kw">ssh</span> dsciu001 hdfs dfs -cat /repository/movielens/README.txt</code></pre></div>
+<p>The output of this file should be visible in Jupyter’s output box. You can toggle scrolling of this output instead of having a lengthy window by clicking on Cells/Current Outputs/Toggle Scrolling on the Menu bar.</p>
+<p>To find the rating averages of movies, we will need to look at the <strong>ratings.csv</strong> file. In this case, the dataset’s README has provided extensive details about the structure of the file. In the case when a README is not available or inadequate, you can attempt to discern this information by looking at the data itself. It is important to note that you do not want to view the entire file (if it is stored in Hadoop, it is going to be HUGE). Since HDFS does not have a <strong>head</strong> function, you can call <strong>-cat</strong> but pipe the results through the Linux system’s <strong>head</strong> function to cut off the output stream at the number of lines you want to review.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">!<span class="kw">ssh</span> dsciu001 hdfs dfs -cat /repository/movielens/ratings.csv  <span class="kw">2&gt;</span>/dev/null <span class="kw">|</span> <span class="kw">head</span> -n 10</code></pre></div>
+<pre class="output"><code>userId,movieId,rating,timestamp
+1,169,2.5,1204927694
+1,2471,3.0,1204927438
+1,48516,5.0,1204927435
+2,2571,3.5,1436165433
+2,109487,4.0,1436165496
+2,112552,5.0,1436165496
+2,112556,4.0,1436165499
+3,356,4.0,920587155
+3,2394,4.0,920586920
+cat: Unable to write to output stream.</code></pre>
+<p>For any specific job/task that requires MapReduce, the inevitable question is what is the Key/Value pair the mapper should produce such that the collection of Values for each unique Key at the reducer is suitable for the operation that would generate the final required results. One approach to address this question is to traverse backward from the required results. In our case, we want to find the rating average of each movie within the dataset. It is intuitive then to assume that a movie should be the KEY, and the collection of VALUES is the collection of ratings across the entire data set for this movie. Therefore, the KEY/VALUE pair emitted by the mapping process should be movie/rating. Based on the structure of the <strong>ratings.csv</strong> file, this is equivalent to emitting the elements at the second and third columns as KEY and VALUE, respectively.</p>
+<p>Under Jupyter’s main page, select New and open new Terminal. This will pop up an additional browser tab with a terminal to your allocated Palmetto node. Within this terminal, navigate to the <strong>intro-to-hadoop</strong> directory and create a Python file named mapper01.py with the following content:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/usr/bin/env python                                          </span>
+<span class="kw">import</span> sys                                                                                                
+<span class="kw">for</span> <span class="kw">oneMovie</span> in sys.stdin:                                                                            
+  <span class="kw">oneMovie</span> = oneMovie.strip()                                                  
+  <span class="kw">ratingInfo</span> = oneMovie.split(<span class="st">&quot;,&quot;</span>)                                                                       
+  <span class="kw">movieID</span> = ratingInfo[1]                                                                               
+  <span class="kw">rating</span> = ratingInfo[2]                                                                                 
+  <span class="kw">print</span> (<span class="st">&#39;%s\t%s&#39;</span> % (movieID, rating))           </code></pre></div>
+<p>We can test this mapper file by using Linux pipe and HDFS’ <strong>cat</strong> command in the following manner.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">!<span class="kw">ssh</span> dsciu001 hdfs dfs -cat /repository/movielens/ratings.csv <span class="kw">2&gt;</span>/dev/null <span class="kw">|</span> <span class="kw">head</span> -n 10 <span class="kw">|</span> <span class="kw">python</span> mapper01.py</code></pre></div>
+<pre class="output"><code>movieId rating
+169 2.5
+2471    3.0
+48516   5.0
+2571    3.5
+109487  4.0
+112552  5.0
+112556  4.0
+356 4.0
+2394    4.0
+cat: Unable to write to output stream.</code></pre>
+<p>This program produces the KEY/VALUE pairs that we want, but it also produces something that we do not want, the movieId/rating pair, which was parsed from the first line of <strong>ratings.csv</strong>.</p>
+<h2 id="check-your-understanding-filtering-and-error-checking-on-mapper" class="challenge">Check your understanding: Filtering and error checking on mapper</h2>
+<p>The output of the current mapper contains the headers for movieId and rating. Modify the mapper01.py file to filter out these values. Name the new file mapper02.py</p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="data-checking"><span class="glyphicon glyphicon-pushpin"></span>Data Checking</h2>
+</div>
+<div class="panel-body">
+<p>As data become massive, the probability of having bad data also increases accordingly. It is important that you are at least aware of potential bad values (i.e, missing data, error messages instead of numeric values, …) and design error-checking into the mapping process. While error-checking can also be done by reducers, mappers have a much higher degree of concurrency and can be more efficient in data cleaning. Furthermore, we do not want to waste bandwidth sending out bad data.</p>
+</div>
+</aside>
+<p>Output of mapper02 with error checking message</p>
+<pre class="output"><code>Invalid ID/rating: movieId rating
+169.0   2.5
+2471.0  3.0
+48516.0 5.0
+2571.0  3.5
+109487.0    4.0
+112552.0    5.0
+112556.0    4.0
+356.0   4.0
+2394.0  4.0
+cat: Unable to write to output stream.</code></pre>
+<p>Output of mapper02 without error checking messages</p>
+<pre class="output"><code>169.0   2.5
+2471.0  3.0
+48516.0 5.0
+2571.0  3.5
+109487.0    4.0
+112552.0    5.0
+112556.0    4.0
+356.0   4.0
+2394.0  4.0
+cat: Unable to write to output stream.</code></pre>
+<p>The mapping output looks good, but it does not carry as much information as we would like. As it is, this intermediate data will enable reducers to calculate the average ratings associated with movieId. While this is technically correct, it still requires additional processing to associate the IDs with the movie titles themselves. Is it possible for us to do this step within the mapper? Reexamining the README, we see that movieIds are associated with titles in the <strong>movies.csv</strong> file. Also, this file is much smaller than the <strong>ratings.csv</strong> file. Looking forward into the future, we can see that this difference in size can only be widened, as there can only be hundreds to thousands of new movies each year, but there will be significantly more people reviewing each movie each year. Therefore, it is reasonable to have each <strong>individual mapper</strong> to go ahead and load <strong>movies.csv</strong> as dictionary in order to associate each processed movieId with the appropriate title.</p>
+<p>It is easier to have <strong>movies.csv</strong> available to be loaded from the Linux file system.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ !<span class="kw">ssh</span> dsciu001 hdfs dfs -get /repository/movielens/movies.csv /home/<span class="kw">&lt;</span>username<span class="kw">&gt;</span>/intro-to-hadoop</code></pre></div>
+<p>The easiest way to streamline the association process is to read the <strong>movies.csv</strong> file as a Python dictionary. Create a Python file named <strong>mapper03.py</strong> with the following content:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/usr/bin/env python          </span>
+<span class="kw">import</span> sys            
+<span class="kw">import</span> csv                                                       
+<span class="kw">movieFile</span> = <span class="st">&quot;movies.csv&quot;</span>
+<span class="kw">movieList</span> = <span class="dt">{}</span>
+<span class="kw">with</span> open(movieFile, mode = <span class="st">&#39;r&#39;</span>) <span class="kw">as</span> infile:
+  <span class="kw">reader</span> = csv.reader(infile)
+    <span class="kw">for</span> <span class="kw">row</span> in reader:  
+      <span class="kw">movieList</span>[row[0]] = <span class="dt">{}</span>  
+      <span class="kw">movieList</span>[row[0]][<span class="st">&quot;title&quot;</span>] = row[1].strip()  
+      <span class="kw">movieList</span>[row[0]][<span class="st">&quot;genre&quot;</span>] = row[2].strip()                       
+<span class="kw">for</span> <span class="kw">oneMovie</span> in sys.stdin:                                     
+  <span class="kw">oneMovie</span> = oneMovie.strip()      
+  <span class="kw">ratingInfo</span> = oneMovie.split(<span class="st">&quot;,&quot;</span>)               
+  <span class="kw">try</span>:
+    <span class="kw">movieTitle</span> = movieList[ratingInfo[1]][<span class="st">&quot;title&quot;</span>]   
+    <span class="kw">rating</span> = float(ratingInfo[2])                     
+    <span class="kw">print</span> (<span class="st">&quot;%s\t%s&quot;</span> % (movieTitle, rating))    
+  <span class="kw">except</span> ValueError:                           
+    <span class="kw">continue</span>                 </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">!<span class="kw">ssh</span> dsciu001 hdfs dfs -cat /repository/movielens/ratings.csv <span class="kw">2&gt;</span>/dev/null <span class="kw">|</span> <span class="kw">head</span> -n 10 <span class="kw">|</span> <span class="kw">python</span> mapper03.py</code></pre></div>
+<pre class="output"><code>Free Willy 2: The Adventure Home (1995) 2.5
+Crocodile Dundee II (1988)  3.0
+Departed, The (2006)    5.0
+Matrix, The (1999)  3.5
+Interstellar (2014) 4.0
+Whiplash (2014) 5.0
+Gone Girl (2014)    4.0
+Forrest Gump (1994) 4.0
+Prince of Egypt, The (1998) 4.0
+cat: Unable to write to output stream.</code></pre>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="data-checking-1"><span class="glyphicon glyphicon-pushpin"></span>Data Checking</h2>
+</div>
+<div class="panel-body">
+<p>Notice the .strip() statement. Leading and trailing white spaces are among the most common potential errors, especially when dealing with textual data.</p>
+</div>
+</aside>
+<p>We are now ready to funnel this data into a reducer.</p>
+<h2 id="check-your-understanding-map-genres-to-ratings" class="challenge">Check your understanding: Map genres to ratings</h2>
+<p>Another useful information to the movie company is not about the average ratings of movies, but the average ratings of the genres. Write a mapper program called <strong>mapGenre.py</strong> to associate the rating information of the movies to their respective genres. A movie can belong to several genres, and its rating will be counted as the rating for each of its genres.</p>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label clemson-orange" href="http://citi.clemson.edu">CITI</a>
+        <a class="label clemson-orange" href="https://github.com/clemsoncoe/hpc-workshop">Source</a>
+        <a class="label clemson-orange" href="mailto:atrikut@clemson.edu">Contact</a>
+        <a class="label clemson-orange" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
