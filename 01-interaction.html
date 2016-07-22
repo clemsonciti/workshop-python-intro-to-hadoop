@@ -34,35 +34,22 @@
 </div>
 <div class="panel-body">
 <ul>
-<li>Learn how to access the web-based Jupyter notebook.</li>
 <li>Learn how to use the Hadoop command in Jupyter shells.</li>
 <li>Learn how to access the web UI of the Hadoop Distributed File System.</li>
 </ul>
 </div>
 </section>
-<p>In this workshop, we will leverage the Jupyter infrastructure at Clemson University to directly interact with Hadoop.</p>
-<h2 id="jupyter">Jupyter</h2>
-<p>To start using the Jupyter notebook, go to <strong>https://webapp01-ext.palmetto.clemson.edu:8443</strong> and sign in with your Clemson credentials. Next, click <strong>Start My Server</strong> to spawn a new Jupyter notebook. You should see the content of your home directory on Palmetto under <strong>Files</strong>.</p>
-<p><br> <img src="fig/jupyter/login.png" \
-     alt="Login" \
-     style="height:300px"> <br></p>
-<p>Under <strong>New</strong>, create a new folder. This folder will appear immediately in your home directly with the name <strong>Untitled Folder</strong>. Check the selection box next to this folder, a button called <strong>Rename</strong> will appear below the <strong>Files</strong> tab. Click this button to change this folder to a name of your choice. Click on this folder to go to the next level.</p>
-<p><br> <img src="fig/jupyter/folder.png" \
-     alt="Create New Folder" \
-     style="height:300px"> <br></p>
-<p>Use the menu under <strong>New</strong> once again to create a new Jupyter notebook using Python 3.0 distributed through Anaconda 2.5.0 by Continuum.</p>
-<p><br> <img src="fig/jupyter/notebook.png" \
-     alt="Create New Folder" \
-     style="height:300px"> <br></p>
-<p>Change the name of this notebook to “Introduction to Hadoop”.</p>
-<p><br> <img src="fig/jupyter/notebook-2.png" \
-     alt="Create New Folder" \
-     style="height:300px"> <br></p>
+<p>In this workshop, we will leverage the Jupyter infrastructure at Clemson University to directly interact with Hadoop. Technical details on how to use the Jupyter infrastructure can be found at <strong>https://clemsonciti.github.io/jupyterhub-userdocs/</strong></p>
 <p>For this workshop, the default codes inside a cell will be interpreted as Python language. However, any line that begins with <strong>!</strong> will be interpreted as a Linux system command.</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> (<span class="st">&quot;Hello World&quot;</span>)</code></pre></div>
 <pre><code>Hello World</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">!</span>ls data</code></pre></div>
-<pre><code>gutenberg-shakespeare.txt  ml-10m.zip</code></pre>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">!</span>ls <span class="op">/</span></code></pre></div>
+<pre><code>bin     common1  feltus     lost+found  panicle   selinux   usr
+bioengr     cugi     home       media   proc      smlc      var
+boot        cvmfs    install        misc    root      software  xcatpost
+cgroup      dev      lib        mnt     sbin      srv       zfs
+collective  etc      lib64      net     scratch1  sys
+common      fast     local_scratch  opt     scratch2  tmp</code></pre>
 <h2 id="hdfs-commands">HDFS commands</h2>
 <p>HDFS provides a set of commands for users to interact with the system from a Linux-based terminal. To view all available HDFS systems commands, run the following in a cell:</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">!</span>ssh dsciu001 hdfs</code></pre></div>
