@@ -1,3 +1,4 @@
+
 ---
 layout: page
 title: Introduction to Hadoop
@@ -19,7 +20,8 @@ Map operates on all data elements of a collection by applying the same operation
 (or same set of operations) to each individual element of this collection. The
 outcome of Map is another collection of new data elements:
 
-~~~ {.bash}
+
+```python
 input_data = [0,1,2,3,4]
 
 def squared (x):
@@ -27,15 +29,15 @@ def squared (x):
 
 map_output_1 = list(map(squared, input_data))
 print (map_output_1)
-~~~
+```
 
-~~~ {.output}
-[0, 1, 4, 9, 16]
-~~~
+    [0, 1, 4, 9, 16]
+
 
 Map operation to filter data:
 
-~~~ {.bash}
+
+```python
 input_data = [0,1,2,3,4]
 
 def squared (x):
@@ -45,15 +47,15 @@ def squared (x):
 
 map_output_2 = list(map(squared, input_data))
 print (map_output_2)
-~~~
+```
 
-~~~ {.output}
-[None, None, None, 9, 16]
-~~~
+    [None, None, None, 9, 16]
+
 
 Map operation to break up sentences into individual words:
 
-~~~ {.bash}
+
+```python
 input_data = ["Ask not what your data can do for you", "ask what you can do for your data"]
 
 def parse_words (x):
@@ -61,12 +63,10 @@ def parse_words (x):
 
 map_output_3 = list(map(parse_words, input_data))
 print (map_output_3)
-~~~
+```
 
-~~~ {.output}
-[['Ask', 'not', 'what', 'your', 'data', 'can', 'do', 'for', 'you'],
-['ask', 'what', 'you', 'can', 'do', 'for', 'your', 'data']]
-~~~
+    [['Ask', 'not', 'what', 'your', 'data', 'can', 'do', 'for', 'you'], ['ask', 'what', 'you', 'can', 'do', 'for', 'your', 'data']]
+
 
 A Reduce function will operate on the outcome of a Map operation to either
 collapse or combine these new data elements into either a single value or a
@@ -75,22 +75,23 @@ subset of elements.
 Reduce function that accumulates values of a list using Python's built-in
 ***reduce*** function:
 
-~~~ {.bash}
+
+```python
 import functools
 def sum(tmp, x):
     return tmp + x
 
 reduce_output_1 = functools.reduce(sum, map_output_1)
 print (reduce_output_1)
-~~~
+```
 
-~~~ {.output}
-30
-~~~
+    30
+
 
 A user-defined reduce function using standard for loop:
 
-~~~ {.bash}
+
+```python
 def sum_reduce(x):
     sum = 0
     for data_element in x:
@@ -99,11 +100,10 @@ def sum_reduce(x):
 
 reduce_output_2 = sum_reduce(map_output_1)
 print(reduce_output_2)
-~~~
+```
 
-~~~ {.output}
-30
-~~~
+    30
+
 
 ## Check your understanding: Write a MapReduce procedure {.challenge}
 

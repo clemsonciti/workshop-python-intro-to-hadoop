@@ -4,24 +4,24 @@
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
     <title>Introduction to Hadoop</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
-    <link rel="stylesheet" type="text/css" href="css/swc.css" />
-    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
-    <meta charset="UTF-8" />
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
   <body class="lesson">
     <div class="container card">
-      <div class="banner">
-        <a href="http://citi.clemson.edu" title="Software Carpentry">
-          <img alt="Software Carpentry banner" src="img/paw.gif" width="100px" height="auto" />
-        </a>
+      <div class="banner">
+        <a href="http://citi.clemson.edu" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/paw.gif" width="100px" height="auto" />
+        </a>
       </div>
       <article>
       <div class="row">
@@ -30,7 +30,7 @@
           <h2 class="subtitle">Introducing the MapReduce Programming Paradigm</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
@@ -42,54 +42,53 @@
 </section>
 <p>MapReduce is a programming model that has its roots in functional programming. The ideal targets for MapReduce are collections of data elements (lists, arrays, sets …). There are two core functions in MapReduce: Map and Reduce.</p>
 <p>Map operates on all data elements of a collection by applying the same operation (or same set of operations) to each individual element of this collection. The outcome of Map is another collection of new data elements:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">input_data</span> = [0,1,2,3,4]
+<pre class="sourceCode python"><code class="sourceCode python">input_data = [<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]
 
-<span class="kw">def</span> squared (x)<span class="kw">:</span>
+<span class="kw">def</span> squared (x):
     <span class="kw">return</span> x * x
 
-<span class="kw">map_output_1</span> = list(map(squared, input_data))
-<span class="kw">print</span> (map_output_1)</code></pre></div>
-<pre class="output"><code>[0, 1, 4, 9, 16]</code></pre>
+map_output_1 = <span class="dt">list</span>(<span class="dt">map</span>(squared, input_data))
+<span class="dt">print</span> (map_output_1)</code></pre>
+<pre><code>[0, 1, 4, 9, 16]</code></pre>
 <p>Map operation to filter data:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">input_data</span> = [0,1,2,3,4]
+<pre class="sourceCode python"><code class="sourceCode python">input_data = [<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]
 
-<span class="kw">def</span> squared (x)<span class="kw">:</span>
-    <span class="kw">tmp</span> = x * x
-    <span class="kw">if</span> <span class="kw">tmp</span> <span class="kw">&gt;</span> 4:
+<span class="kw">def</span> squared (x):
+    tmp = x * x
+    <span class="kw">if</span> tmp &gt; <span class="dv">4</span>:
         <span class="kw">return</span> x * x
 
-<span class="kw">map_output_2</span> = list(map(squared, input_data))
-<span class="kw">print</span> (map_output_2)</code></pre></div>
-<pre class="output"><code>[None, None, None, 9, 16]</code></pre>
+map_output_2 = <span class="dt">list</span>(<span class="dt">map</span>(squared, input_data))
+<span class="dt">print</span> (map_output_2)</code></pre>
+<pre><code>[None, None, None, 9, 16]</code></pre>
 <p>Map operation to break up sentences into individual words:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">input_data</span> = [<span class="st">&quot;Ask not what your data can do for you&quot;</span>, <span class="st">&quot;ask what you can do for your data&quot;</span>]
+<pre class="sourceCode python"><code class="sourceCode python">input_data = [<span class="st">&quot;Ask not what your data can do for you&quot;</span>, <span class="st">&quot;ask what you can do for your data&quot;</span>]
 
-<span class="kw">def</span> parse_words (x)<span class="kw">:</span>
+<span class="kw">def</span> parse_words (x):
     <span class="kw">return</span> x.split()
 
-<span class="kw">map_output_3</span> = list(map(parse_words, input_data))
-<span class="kw">print</span> (map_output_3)</code></pre></div>
-<pre class="output"><code>[[&#39;Ask&#39;, &#39;not&#39;, &#39;what&#39;, &#39;your&#39;, &#39;data&#39;, &#39;can&#39;, &#39;do&#39;, &#39;for&#39;, &#39;you&#39;],
-[&#39;ask&#39;, &#39;what&#39;, &#39;you&#39;, &#39;can&#39;, &#39;do&#39;, &#39;for&#39;, &#39;your&#39;, &#39;data&#39;]]</code></pre>
+map_output_3 = <span class="dt">list</span>(<span class="dt">map</span>(parse_words, input_data))
+<span class="dt">print</span> (map_output_3)</code></pre>
+<pre><code>[[&#39;Ask&#39;, &#39;not&#39;, &#39;what&#39;, &#39;your&#39;, &#39;data&#39;, &#39;can&#39;, &#39;do&#39;, &#39;for&#39;, &#39;you&#39;], [&#39;ask&#39;, &#39;what&#39;, &#39;you&#39;, &#39;can&#39;, &#39;do&#39;, &#39;for&#39;, &#39;your&#39;, &#39;data&#39;]]</code></pre>
 <p>A Reduce function will operate on the outcome of a Map operation to either collapse or combine these new data elements into either a single value or a subset of elements.</p>
 <p>Reduce function that accumulates values of a list using Python’s built-in <strong><em>reduce</em></strong> function:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">import</span> functools
-<span class="kw">def</span> sum(tmp, x)<span class="kw">:</span>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> functools
+<span class="kw">def</span> <span class="dt">sum</span>(tmp, x):
     <span class="kw">return</span> tmp + x
 
-<span class="kw">reduce_output_1</span> = functools.reduce(sum, map_output_1)
-<span class="kw">print</span> (reduce_output_1)</code></pre></div>
-<pre class="output"><code>30</code></pre>
+reduce_output_1 = functools.<span class="dt">reduce</span>(<span class="dt">sum</span>, map_output_1)
+<span class="dt">print</span> (reduce_output_1)</code></pre>
+<pre><code>30</code></pre>
 <p>A user-defined reduce function using standard for loop:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">def</span> sum_reduce(x)<span class="kw">:</span>
-    <span class="kw">sum</span> = 0
-    <span class="kw">for</span> <span class="kw">data_element</span> in x:
-        <span class="kw">sum</span> = sum + data_element
-    <span class="kw">return</span> sum
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> sum_reduce(x):
+    <span class="dt">sum</span> = <span class="dv">0</span>
+    <span class="kw">for</span> data_element in x:
+        <span class="dt">sum</span> = <span class="dt">sum</span> + data_element
+    <span class="kw">return</span> <span class="dt">sum</span>
 
-<span class="kw">reduce_output_2</span> = sum_reduce(map_output_1)
-<span class="kw">print</span>(reduce_output_2)</code></pre></div>
-<pre class="output"><code>30</code></pre>
+reduce_output_2 = sum_reduce(map_output_1)
+<span class="dt">print</span>(reduce_output_2)</code></pre>
+<pre><code>30</code></pre>
 <h2 id="check-your-understanding-write-a-mapreduce-procedure" class="challenge">Check your understanding: Write a MapReduce procedure</h2>
 <p>Given the following data set [-2,5,-10,4,7,9,1], find the largest squared value.</p>
 <h2 id="hadoop-mapreduce">Hadoop MapReduce</h2>
@@ -108,15 +107,15 @@
         </div>
       </div>
       </article>
-      <div class="footer">
-        <a class="label clemson-orange" href="http://citi.clemson.edu">CITI</a>
-        <a class="label clemson-orange" href="https://github.com/clemsoncoe/hpc-workshop">Source</a>
-        <a class="label clemson-orange" href="mailto:atrikut@clemson.edu">Contact</a>
-        <a class="label clemson-orange" href="LICENSE.html">License</a>
+      <div class="footer">
+        <a class="label clemson-orange" href="http://citi.clemson.edu">CITI</a>
+        <a class="label clemson-orange" href="https://github.com/clemsoncoe/hpc-workshop">Source</a>
+        <a class="label clemson-orange" href="mailto:atrikut@clemson.edu">Contact</a>
+        <a class="label clemson-orange" href="LICENSE.html">License</a>
       </div>
     </div>
-    <!-- Javascript placed at the end of the document so the pages load faster -->
-    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
     <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
   </body>
 </html>
