@@ -220,3 +220,7 @@ Copy the file ***gutenberg-shakespeare.txt*** from Palmetto to this newly
  created **intro-to-hadoop** directory on HDFS using **put**. View the content of
  the **intro-to-hadoop** directory to confirm that the file has been
  successfully uploaded.
+ 
+Use `wget` to download the movie rating data from https://github.com/clemsonciti/hadoop-python-01-workshop/raw/gh-pages/data/ml-10m.zip. Use `unzip` to decompress the file. Copy the decompressed directory, **ml-10M100K**, into the
+**intro-to-hadoop** directory on HDFS using **put**. Run `hdfs fsck` on this directory to validate the status of 
+the uploaded directory. 
