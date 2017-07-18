@@ -1,5 +1,6 @@
 
 
+
 # Introduction to Big Data Analytics using Hadoop MapReduce with Python
 
 This full-day workshop aims to provide participants with a detailed knowledge on:
@@ -28,4 +29,6 @@ should already have access to Cypress with your Clemson account activated.
 
 
 
-https://www.palmetto.clemson.edu/jupyterhub/user/lngo/edit/.jhubrc
+https://www.palmetto.clemson.edu/jupyterhub/user/USERNAME/edit/.jhubrc
+
+https://www.palmetto.clemson.edu/jupyterhub/user/USERNAME/edit/.bashrc
